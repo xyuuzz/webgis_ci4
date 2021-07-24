@@ -21,6 +21,12 @@
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
     <link href="<?= base_url() ?>/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url() ?>/leaflet/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="<?= base_url() ?>/leaflet/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -58,6 +64,7 @@
         </div>
     </div>
 <script type="text/javascript" src="<?= base_url() ?>/scripts/main.js"></script></body>
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-<script src="<?= base_url() ?>/js/custom.js"></script>
+
+<?= $this->renderSection("js") ?>
+
 </html>

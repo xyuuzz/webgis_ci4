@@ -4,32 +4,27 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Kecamatan extends Model
+class Hotspot extends Model
 {
 	protected $DBGroup              = 'default';
-	protected $table                = 'kecamatan';
-	protected $primaryKey           = 'id_kecamatan';
+	protected $table                = 'hotspots';
+	protected $primaryKey           = 'id';
 	protected $useAutoIncrement     = true;
 	protected $insertID             = 0;
 	protected $returnType           = 'array';
 	protected $useSoftDeletes       = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = ["kode", "nama_kecamatan", "geo_json", "warna"];
+	protected $allowedFields        = [];
 
 	// Dates
-	protected $useTimestamps        = true;
+	protected $useTimestamps        = false;
 	protected $dateFormat           = 'datetime';
 	protected $createdField         = 'created_at';
 	protected $updatedField         = 'updated_at';
 	protected $deletedField         = 'deleted_at';
 
 	// Validation
-	protected $validationRules = [
-		"kode" => "required|string|min_length[4]",
-		"nama_kecamatan" => "required|string|min_length[4]",
-		"warna" => "required|string|min_length[4]",
-	];
-
+	protected $validationRules      = [];
 	protected $validationMessages   = [];
 	protected $skipValidation       = false;
 	protected $cleanValidationRules = true;
@@ -44,9 +39,4 @@ class Kecamatan extends Model
 	protected $afterFind            = [];
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
-
-	public function addUploadedValidate()
-	{
-		$this->validationRules["geo_json"] = "uploaded[geo_json]";
-	}
 }

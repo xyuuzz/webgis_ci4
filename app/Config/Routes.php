@@ -35,7 +35,31 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'HomeController::index');
 $routes->get('/kecamatan', 'KecamatanController::index');
 $routes->get('/buat/kecamatan', 'KecamatanController::create');
+$routes->get('/edit/kecamatan/(:any)', 'KecamatanController::edit/$1');
 $routes->post('/store/kecamatan', 'KecamatanController::store');
+$routes->patch('/update/kecamatan/(:any)', 'KecamatanController::update/$1');
+$routes->delete("/delete/kecamatan/(:any)", "KecamatanController::delete/$1");
+
+$routes->get("leaflet/circle-maker", "LeafletController::maker_circle", 
+				["as" => "circle_maker"]);
+
+$routes->get("leaflet/polyline", "LeafletController::polyline", 
+				["as" => "polyline"]);
+
+$routes->get("leaflet/route", "LeafletController::routing", 
+				["as" => "routing"]);
+
+$routes->get("leaflet/polygon", "LeafletController::polygon", 
+				["as" => "polygon"]);
+
+$routes->get("leaflet/get-coordinat/drag-marker", "LeafletController::drag_marker", 
+				["as" => "drag_marker"]);
+
+$routes->get("leaflet/get-coordinat/marker-tps", "LeafletController::marker_tps", 
+				["as" => "marker_tps"]);
+
+$routes->get("leaflet/get-coordinat/circle-tps", "LeafletController::circle_tps", 
+				["as" => "circle_tps"]);
 
 /*
  * --------------------------------------------------------------------
