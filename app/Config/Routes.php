@@ -61,6 +61,20 @@ $routes->get("leaflet/get-coordinat/marker-tps", "LeafletController::marker_tps"
 $routes->get("leaflet/get-coordinat/circle-tps", "LeafletController::circle_tps", 
 				["as" => "circle_tps"]);
 
+$routes->get("leaflet/get-coordinat/cluster-marker", "LeafletController::cluster_marker", 
+				["as" => "cluster_marker"]);
+
+$routes->get("leaflet/get-coordinat/heatmap", "LeafletController::heatmap", 
+				["as" => "heatmap"]);
+
+$routes->get("leaflet/get-coordinat/control-search", "LeafletController::control_search", 
+				["as" => "control_search"]);
+
+$routes->get("leaflet/get-coordinat/polygon-geojson", "LeafletController::polygon_geojson", 
+				["as" => "polygon_geojson"]);
+
+$routes->get("leaflet/get-coordinat/polygon-geojson-database", "LeafletController::polygon_geojson_database", [ "as" => "polygon_geojson_database" ]);
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

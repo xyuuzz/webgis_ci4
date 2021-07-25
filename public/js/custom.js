@@ -4,7 +4,6 @@ function url_link()
 }
 
 
-
 function kecamatan(url)
 {
     const data = new FormData($("form")[0]);
@@ -45,5 +44,4 @@ $(document).ready( function()
     $(".addKecamatanForm").on("submit", e => {
         e.preventDefault();
     });
-    
 })

@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\TPSCoordinat;
+use App\Models\{TPSCoordinat, FileGeoJSON};
 use App\Controllers\BaseController;
 
 class LeafletController extends BaseController
@@ -12,6 +12,7 @@ class LeafletController extends BaseController
 	public function __construct()
 	{
 		$this->tps_coordinat = new TPSCoordinat();
+		$this->file_geojson = new FileGeoJSON();
 	}
 
 	public function maker_circle()
@@ -98,6 +99,69 @@ class LeafletController extends BaseController
 		];
 	
 		return view('get_coordinat/circle_tps/index', $data);
-		
+	}
+
+	public function cluster_marker()
+	{
+		$data = [
+			"list_tps" => $this->tps_coordinat->get()->getResultObject(),
+			"title_header_page" => "Pemetaan Cluster TPS Bandung",
+			"description_header_page" => "Menampilkan Cluster Wilayah Tps Bandung",
+			"title" => "Cluster TPS Bandung",
+			"icon" => "pe-7s-home",
+		];
+	
+		return view('get_coordinat/cluster_marker/index', $data);
+	}
+
+	public function heatmap()
+	{
+		$data = [
+			"list_tps" => $this->tps_coordinat->get()->getResultObject(),
+			"title_header_page" => "Heatmap TPS Bandung",
+			"description_header_page" => "Menampilkan Tempat TPS di Bandung Menggunakan Heatmap",
+			"title" => "Heatmap TPS",
+			"icon" => "pe-7s-home",
+		];
+	
+		return view('get_coordinat/heatmap/index', $data);
+	}
+	
+	public function control_search()
+	{
+		$data = [
+			"list_tps" => $this->tps_coordinat->get()->getResultObject(),
+			"title_header_page" => "Fitur Search Untuk TPS Bandung",
+			"description_header_page" => "Cari TPS Lalu Arahkan ke Marker TPS tersebut",
+			"title" => "Control Search TPS",
+			"icon" => "pe-7s-home",
+		];
+	
+		return view('get_coordinat/control_search/index', $data);
+	}
+	
+	public function polygon_geojson()
+	{
+		$data = [
+			"title_header_page" => "Fitur Polygon menggunakan Data GeoJSON ",
+			"description_header_page" => "Mengelompokan provinsi menggunakan GeoJSON dan Polygon",
+			"title" => "Polygon GeoJSON",
+			"icon" => "pe-7s-home",
+		];
+	
+		return view('polygon_geojson/index', $data);
+	}
+	
+	public function polygon_geojson_database()
+	{
+		$data = [
+			"list_geojson" => $this->file_geojson->get()->getResultObject(),
+			"title_header_page" => "Polygon menggunakan GeoJSON dari Database",
+			"description_header_page" => "Memberi Warna Untuk Setiap Regency di setiap kota yang ada di Jakarta",
+			"title" => "Polygon GeoJSON Database",
+			"icon" => "pe-7s-database",
+		];
+
+		return view('polygon_geojson_database/index', $data);
 	}
 }

@@ -10,23 +10,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
-    <!--
-    =========================================================
-    * ArchitectUI HTML Theme Dashboard - v1.0.0
-    =========================================================
-    * Product Page: https://dashboardpack.com
-    * Copyright 2019 DashboardPack (https://dashboardpack.com)
-    * Licensed under MIT (https://github.com/DashboardPack/architectui-html-theme-free/blob/master/LICENSE)
-    =========================================================
-    * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-    -->
+    
     <link href="<?= base_url() ?>/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url() ?>/leaflet/leaflet.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <!-- file css leaflet-search -->
+    <link rel="stylesheet" href="<?= base_url() ?>/leaflet-search/src/leaflet-search.css">">
+    <!-- File css routing/jalur  -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" /> 
     <script src="<?= base_url() ?>/leaflet/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 
+    <!-- plugin cluster routing/jalur & jquery -->
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- cluster plugin -->
+    <!-- <link rel="stylesheet" href="<?= base_url() ?>/cluster/example/screen.css"/> -->
+    <link rel="stylesheet" href="<?= base_url() ?>/cluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>/cluster/dist/MarkerCluster.Default.css" />
+    <script src="<?= base_url() ?>/cluster/dist/leaflet.markercluster-src.js"></script>
+
+    <!-- heatmap plugin -->
+    <script src="<?= base_url() ?>/heatmap_leaflet/dist/leaflet-heat.js"></script>
+    <!-- leaflet-search plugin -->
+    <script src="<?= base_url() ?>/leaflet-search/src/leaflet-search.js"></script>
+
+    <style>
+        #auto_com {z-index: 100;}
+    </style>
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">

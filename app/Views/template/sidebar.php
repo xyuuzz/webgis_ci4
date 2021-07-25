@@ -73,7 +73,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        <i class="metismenu-icon pe-7s-map"></i>
                         Get Koordinat 
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
@@ -99,7 +99,42 @@
                                 Circle TPS
                             </a>
                         </li>
+                        <li>
+                            <a href="<?= route_to("cluster_marker") ?>" 
+                            class="<?= base_url("leaflet/get-coordinat/cluster-marker") === current_url() ? "mm-active" : "" ?>">
+                                <i class="metismenu-icon pe-7s-rocket"></i>
+                                Cluster Marker TPS
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= route_to("heatmap") ?>" 
+                            class="<?= base_url("leaflet/get-coordinat/heatmap") === current_url() ? "mm-active" : "" ?>">
+                                <i class="metismenu-icon pe-7s-rocket"></i>
+                                HeatMap TPS
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= route_to("control_search") ?>" 
+                            class="<?= base_url("leaflet/get-coordinat/control-search") === current_url() ? "mm-active" : "" ?>">
+                                <i class="metismenu-icon pe-7s-rocket"></i>
+                                Control Search TPS
+                            </a>
+                        </li>
                     </ul>
+                </li>
+                <li>
+                    <a href="<?= route_to("polygon_geojson") ?>" 
+                    class="<?= base_url("leaflet/get-coordinat/polygon-geojson") === current_url() ? "mm-active" : "" ?>">
+                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        Polygon GeoJSON
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= route_to("polygon_geojson_database") ?>" 
+                    class="<?= base_url("leaflet/get-coordinat/polygon-geojson-database") === current_url() ? "mm-active" : "" ?>">
+                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        Polygon GeoDB
+                    </a>
                 </li>
             </ul>
         </div>
