@@ -124,16 +124,23 @@
                 </li>
                 <li>
                     <a href="<?= route_to("polygon_geojson") ?>" 
-                    class="<?= base_url("leaflet/get-coordinat/polygon-geojson") === current_url() ? "mm-active" : "" ?>">
+                    class="<?= base_url("leaflet/polygon-geojson") === current_url() ? "mm-active" : "" ?>">
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Polygon GeoJSON
                     </a>
                 </li>
                 <li>
                     <a href="<?= route_to("polygon_geojson_database") ?>" 
-                    class="<?= base_url("leaflet/get-coordinat/polygon-geojson-database") === current_url() ? "mm-active" : "" ?>">
+                    class="<?= base_url("leaflet/polygon-geojson-database") === current_url() ? "mm-active" : "" ?>">
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Polygon GeoDB
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= route_to("base_map") ?>" 
+                    class="<?= base_url("leaflet/base-map") === current_url() ? "mm-active" : "" ?>">
+                        <i class="metismenu-icon pe-7s-rocket"></i>
+                        Base Map
                     </a>
                 </li>
             </ul>

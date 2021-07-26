@@ -2,7 +2,8 @@
 
 <script>
 
-var mymap = L.map('mapid').setView([-6.1932337,106.8484909], 11);
+const default_map = [[-6.1932337,106.8484909], 11];
+var mymap = L.map('mapid').setView(default_map[0], default_map[1]);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -21,13 +22,14 @@ const func_map = async () => {
             }).addTo(mymap);
     
             geoLayer.eachLayer(layer => {
-                arr_kawasan.push([layer.feature.properties.name, [layer._renderer._center.lat, layer._renderer._center.lng]]);
+                // console.log(layer);
+                arr_kawasan.push(layer);
                 layer.bindPopup(`Kawasan: ${layer.feature.properties.name}<br>Kota: <?=  strtoupper(explode(".",$geojson->geo_json)[0]) ?>`);
             });
         });
     <?php endforeach; ?>
 
-    return { kawasan: arr_kawasan.map(v => v[0]), koordinat: arr_kawasan.map(v => v[1]) };
+    return { layer: arr_kawasan };
 };
 
 $(".close").on("click", () => {
@@ -35,13 +37,25 @@ $(".close").on("click", () => {
     $("#searchjkt").val("");
 });
 
+// [layer.feature.properties.name, [layer._renderer._center.lat, layer._renderer._center.lng]]
+func_map().then( ( {layer} ) => {
+    let urutan = -1,
+        kawasan = layer.map(la => la.feature.properties.name);
 
-func_map().then( ({kawasan, koordinat}) => {
-    let urutan = -1;
+    // marker untuk pencarian
+    var marker = L.marker([0,0]);
 
     $("#searchjkt").on("keyup", e => {
+        const query = $(e.target).val();
+
+        marker.remove(); // hapus marker
+        mymap.setView(default_map[0], default_map[1]);
         // 40 down, 38 up
-        if(e.keyCode === 40 && $(".search-wrapper").hasClass("active")) // jika user down 
+        if(e.target.value === "")
+        {
+            $("#auto_com").html('');
+        }
+        else if(e.keyCode === 40 && $(".search-wrapper").hasClass("active")) // jika user down 
         {
             urutan++;
             $(`.list-group-item`).removeClass("border-primary bg-dark").addClass('bg-secondary');
@@ -58,9 +72,8 @@ func_map().then( ({kawasan, koordinat}) => {
             $($(`.list-group-item`)[urutan]).addClass("border-primary bg-dark");
             $("#searchjkt").val($($(`.list-group-item`)[urutan]).html());
         }
-        else if(e.keyCode !== 13) // jika user enter
+        else if(e.keyCode !== 13) // jika user menekan key selain enter
         {
-            const query = $(e.target).val();
             const result = kawasan.filter(key => {
                 key = key.toLowerCase();
                 return key.search(query) !== -1
@@ -76,6 +89,25 @@ func_map().then( ({kawasan, koordinat}) => {
 
             $("#auto_com").removeClass("d-none");
             $("#auto_com").html(el);
+        }
+        else if(e.keyCode === 13) // jika user enter
+        { 
+            $("#auto_com").addClass('d-none');
+            let result = [];
+            layer.forEach((la, i) => { // kita looping layer polygon tiap wilayah
+                if( la.feature.properties.name === query) // jika name nya sama dengan query
+                {
+                    result.push(la.feature.properties.name, la.getCenter())
+                }
+            });
+            // set lat,lng marker 
+            marker.setLatLng(result[1]).bindPopup('Kawasan Ditemukan!<br>' + result[0]).addTo(mymap).openPopup();
+            // set view pada map
+            mymap.setView(result[1], 15);
+
+            $("#searchjkt").val(""); // kosongkan pencarian
+            $(".search-wrapper").removeClass("active"); // hapus active class pada search el
+            urutan = -1;
         }
 
         if($("#auto_com").html() === "") // jika auto complete kosong

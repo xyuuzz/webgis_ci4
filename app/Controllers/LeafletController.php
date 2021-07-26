@@ -159,9 +159,22 @@ class LeafletController extends BaseController
 			"title_header_page" => "Polygon menggunakan GeoJSON dari Database",
 			"description_header_page" => "Memberi Warna Untuk Setiap Regency di setiap kota yang ada di Jakarta",
 			"title" => "Polygon GeoJSON Database",
-			"icon" => "pe-7s-database",
+			"icon" => "pe-7s-home",
 		];
 
 		return view('polygon_geojson_database/index', $data);
+	}
+
+	public function base_map()
+	{
+		$data = [
+			"list_geojson" => $this->file_geojson->get()->getResultObject(),
+			"title_header_page" => "Base Map pada Leaflet.js",
+			"description_header_page" => "Dengan Base Map kita dapat berganti map sesuai keinginan kita",
+			"title" => "Base Map",
+			"icon" => "pe-7s-home",
+		];
+
+		return view('base_map/index', $data);
 	}
 }

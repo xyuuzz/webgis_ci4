@@ -70,10 +70,12 @@ $routes->get("leaflet/get-coordinat/heatmap", "LeafletController::heatmap",
 $routes->get("leaflet/get-coordinat/control-search", "LeafletController::control_search", 
 				["as" => "control_search"]);
 
-$routes->get("leaflet/get-coordinat/polygon-geojson", "LeafletController::polygon_geojson", 
+$routes->get("leaflet/polygon-geojson", "LeafletController::polygon_geojson", 
 				["as" => "polygon_geojson"]);
 
-$routes->get("leaflet/get-coordinat/polygon-geojson-database", "LeafletController::polygon_geojson_database", [ "as" => "polygon_geojson_database" ]);
+$routes->get("leaflet/polygon-geojson-database", "LeafletController::polygon_geojson_database", [ "as" => "polygon_geojson_database" ]);
+
+$routes->get("leaflet/base-map", "LeafletController::base_map", [ "as" => "base_map" ]);
 
 /*
  * --------------------------------------------------------------------
